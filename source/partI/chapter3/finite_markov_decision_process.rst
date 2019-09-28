@@ -52,7 +52,7 @@ MDP和个体一起产生了一个如下所示的序列或 *轨迹*：
 .. math::
     :label: 3.2
 
-    p(s^\prime,r|s,a) \doteq Pr\{S_t=s^\prime,R_t=r|S_{t-1}=s,R_{t-1}=a\}
+    p(s^\prime,r|s,a) \doteq Pr\{S_t=s^\prime,R_t=r|S_{t-1}=s,A_{t-1}=a\}
 
 对所有 :math:`s^\prime, s \in \mathcal{S}`，:math:`\mathcal{r} \in \mathcal{R}`
 和 :math:`a \in \mathcal{A}(s)`。函数 :math:`p` 定义了MDP的 *动态*。
@@ -361,7 +361,7 @@ MDP框架是从相互作用的目标导向学习的问题中抽象出来的。
 .. math::
     :label: 3.11
 
-    G_t \doteq \sum_{k=t+1}^{T} \gamma^{k-t-1} R_t
+    G_t \doteq \sum_{k=t+1}^{T} \gamma^{k-t-1} R_k
 
 包括 :math:`T = \infty` 或 :math:`\gamma = 1` （但不能同时存在）的可能性。
 我们在本书的剩余部分中使用这些约定来简化符号，并表达情节和持续任务之间的近乎相似。
@@ -613,7 +613,7 @@ MDP框架是从相互作用的目标导向学习的问题中抽象出来的。
     v_*(s) &= \max_{a\in\mathcal{A}(s)} q_{\pi_*}(s,a) \\
     &=\max_a \mathbb{E}_{\pi_*}[G_t|S_t=s,A_t=a] \\
     &=\max_a \mathbb{E}_{\pi_*}[R_{t+1}+\gamma G_{t+1}|S_t=s,A_t=a] &(由(3.9)式) \\
-    &=\max_a \mathbb{E}[R_{t=1}+\gamma v_*(S_{t+1})|S_t=s,A_t=a] &(3.18) \\
+    &=\max_a \mathbb{E}[R_{t+1}+\gamma v_*(S_{t+1})|S_t=s,A_t=a] &(3.18) \\
     &=\max_{a\in \mathcal{A}(s)}\sum_{s^\prime,r} p(s^\prime,r|s,a)[r+\gamma v_*(s^\prime)] &(3.19)
     \end{align*}
 
